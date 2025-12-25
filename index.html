@@ -5,98 +5,291 @@
   <title>Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- DS-Digital font -->
-  <link href="https://fonts.cdnfonts.com/css/ds-digital" rel="stylesheet">
+  <!-- Optional: keep your serif identity; swap/remove if you want -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'DS-Digital', monospace;
-      max-width: 520px;
-
-      margin-top: 72px;
-      margin-left: auto;
-      margin-right: 120px;
-
-      padding: 0 20px;
-
-      font-size: 0.8rem;
-      line-height: 1.15;
-      color: #111;
-      letter-spacing: 0.02em;
+    :root{
+      --text:#222;
+      --muted:#555;
+      --max: 980px;
+      --navW: 240px;
+      --gap: 44px;
+      --padL: 48px;
     }
 
-    h1 {
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      padding: 56px 24px;
+      font-family: "EB Garamond", Garamond, serif;
+      font-size: 0.9rem;
+      line-height: 1.28;
+      color: var(--text);
+      background:#fff;
+    }
+
+    /* LEFT-ALIGNED WRAP (like the references) */
+    .wrap{
+      max-width: var(--max);
+      margin: 0;                 /* <-- left aligned (not centered) */
+      padding-left: var(--padL); /* <-- left inset */
+      display: grid;
+      grid-template-columns: var(--navW) 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    /* Sticky nav, but still simple */
+    nav{
+      position: sticky;
+      top: 40px;
+    }
+
+    h1{
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin: 0 0 0.55em 0;
+    }
+
+    .bio{
+      margin: 0 0 1.2em 0;
+      color: var(--muted);
+    }
+
+    .group-title{
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin: 1.1em 0 0.35em 0;
+      color: var(--text);
+    }
+
+    a{
+      color: var(--text);
+      text-decoration: none;
+    }
+    a:hover{ text-decoration: underline; }
+
+    .navlink{
+      display: inline-block;
+      margin: 0.12em 0;
+    }
+
+    /* Active link styling */
+    .navlink.active{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* CONTENT */
+    main{
+      min-width: 0;
+    }
+
+    section{
+      padding-bottom: 44px;
+      scroll-margin-top: 48px;
+    }
+
+    .section-title{
       font-size: 0.95rem;
-      font-weight: 400;
+      font-weight: 500;
       margin: 0 0 0.35em 0;
     }
 
-    h2 {
-      font-size: 0.82rem;
-      font-weight: 400;
-      margin: 1.2em 0 0.25em 0;
+    .section-meta{
+      margin: 0 0 0.9em 0;
+      color: var(--muted);
+      font-style: italic;
     }
 
-    p {
-      margin: 0 0 0.45em 0;
+    /* Horizontal image strip (Ramell-ish) */
+    .strip{
+      display:flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+    .strip::-webkit-scrollbar{ display:none; }
+
+    .strip img{
+      height: 420px;
+      flex: 0 0 auto;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    a {
-      color: #111;
-      text-decoration: none;
+    /* Simple embedded video block */
+    .embed{
+      max-width: 760px;
+    }
+    .embed iframe{
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 0;
+      display:block;
     }
 
-    a:hover {
-      text-decoration: underline;
+    /* Contact line */
+    .contact{
+      color: var(--muted);
+      margin-top: 0.8em;
     }
 
-    .project {
-      margin-bottom: 0.45em;
-    }
-
-    .project span {
-      display: block;
-      font-size: 0.78rem;
-      opacity: 0.75;
+    /* Mobile */
+    @media (max-width: 860px){
+      .wrap{
+        grid-template-columns: 1fr;
+        padding-left: 16px;
+        gap: 26px;
+      }
+      nav{ position: static; }
+      .strip img{ height: 320px; }
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <!-- LEFT NAV (clicking keeps you on the same page, shows work below) -->
+    <nav>
+      <h1>Henry Brant Lewis</h1>
+      <p class="bio">Director, studying at Brown University</p>
 
-  <h1>HENRY BRANT LEWIS</h1>
-  <div class="project">
-    <a href="info.html">INFO</a>
+      <div class="group-title">Photography</div>
+      <a class="navlink" href="#south-forty">South Forty</a>
+
+      <div class="group-title">Films</div>
+      <a class="navlink" href="#dogs">Dogs</a><br>
+      <a class="navlink" href="#warpin">Warpin'</a><br>
+      <a class="navlink" href="#seeyou">See You</a>
+
+      <div class="group-title">Contact</div>
+      <p class="contact">
+        <a href="mailto:henrybrantlewis@gmail.com">Email</a> ·
+        <a href="#">GitHub</a> ·
+        <a href="#">LinkedIn</a>
+      </p>
+    </nav>
+
+    <!-- RIGHT CONTENT (always present, just scrolls to the chosen section) -->
+    <main>
+      <!-- SOUTH FORTY -->
+      <section id="south-forty">
+        <div class="section-title">South Forty</div>
+        <p class="section-meta">Photography</p>
+
+        <!-- Put images here: images/south-forty/sf01.jpg etc -->
+        <div class="strip">
+          <img src="images/south-forty/sf01.jpg" alt="">
+          <img src="images/south-forty/sf02.jpg" alt="">
+          <img src="images/south-forty/sf03.jpg" alt="">
+        </div>
+      </section>
+
+      <!-- DOGS -->
+      <section id="dogs">
+        <div class="section-title">Dogs</div>
+        <p class="section-meta">In progress</p>
+
+        <!-- Optional: stills strip or notes -->
+        <p class="bio">Work in progress.</p>
+      </section>
+
+      <!-- WARPIN -->
+      <section id="warpin">
+        <div class="section-title">Warpin'</div>
+        <p class="section-meta">15-minute narrative · Brown Motion Pictures</p>
+
+        <!-- If you have a Vimeo/YouTube embed, drop it here -->
+        <div class="embed">
+          <!-- Example YouTube embed (replace VIDEO_ID) -->
+          <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+        </div>
+      </section>
+
+      <!-- SEE YOU -->
+      <section id="seeyou">
+        <div class="section-title">See You</div>
+        <p class="section-meta">5-minute narrative · 35mm</p>
+
+        <div class="embed">
+          <!-- Example Vimeo embed (replace numbers) -->
+          <!-- <iframe src="https://player.vimeo.com/video/123456789" allowfullscreen></iframe> -->
+        </div>
+      </section>
+    </main>
   </div>
 
-  <h2>PHOTOGRAPHY</h2>
+  <script>
+    // Smooth scroll + active nav highlight (keeps the “still here, just viewing work” feel)
+    const links = Array.from(document.querySelectorAll('.navlink'));
+    const sections = links
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
 
-  <div class="project">
-    <a href="southforty.html">SOUTH FORTY</a>
-  </div>
+    // Drag-to-scroll for the image strip(s)
+    document.querySelectorAll('.strip').forEach(strip => {
+      let isDown = false, startX = 0, scrollLeft = 0;
+      strip.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - strip.offsetLeft;
+        scrollLeft = strip.scrollLeft;
+        strip.style.cursor = 'grabbing';
+      });
+      strip.addEventListener('mouseleave', () => { isDown = false; strip.style.cursor = 'grab'; });
+      strip.addEventListener('mouseup', () => { isDown = false; strip.style.cursor = 'grab'; });
+      strip.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - strip.offsetLeft;
+        const walk = (x - startX) * 2;
+        strip.scrollLeft = scrollLeft - walk;
+      });
+    });
 
-  <h2>FILMS</h2>
+    function setActive() {
+      const y = window.scrollY + 80;
+      let current = sections[0]?.id || '';
+      sections.forEach(sec => {
+        if (sec.offsetTop <= y) current = sec.id;
+      });
+      links.forEach(a => {
+        const id = a.getAttribute('href').slice(1);
+        a.classList.toggle('active', id === current);
+      });
+    }
 
-  <div class="project">
-    DOGS
-    <span>IN PROGRESS</span>
-  </div>
+    // Smooth scroll on click
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        history.pushState(null, '', a.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(setActive, 150);
+      });
+    });
 
-  <div class="project">
-    <a href="warpin.html">WARPIN'</a>
-    <span>15 MINUTE NARRATIVE / BROWN MOTION PICTURES</span>
-  </div>
-
-  <div class="project">
-    <a href="seeyou.html">SEE YOU</a>
-    <span>5 MINUTE NARRATIVE / 35MM</span>
-  </div>
-
-  <h2>CONTACT</h2>
-  <p>
-    <a href="mailto:henrybrantlewis@gmail.com">EMAIL</a> ·
-  </p>
-
+    window.addEventListener('scroll', setActive, { passive: true });
+    window.addEventListener('load', () => {
+      // If arriving with a hash, scroll to it without leaving page feel
+      const hash = location.hash;
+      if (hash) {
+        const t = document.querySelector(hash);
+        if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+      setActive();
+    });
+  </script>
 </body>
 </html>
+
 
