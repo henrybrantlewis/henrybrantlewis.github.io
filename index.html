@@ -5,7 +5,6 @@
   <title>Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Optional: keep your serif identity; swap/remove if you want -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -14,17 +13,16 @@
     :root{
       --text:#222;
       --muted:#555;
-      --max: 980px;
+      --padL: 44px;
+      --top: 56px;
       --navW: 240px;
-      --gap: 44px;
-      --padL: 48px;
+      --gap: 46px;
     }
-
-    * { box-sizing: border-box; }
+    *{ box-sizing: border-box; }
 
     body{
       margin:0;
-      padding: 56px 24px;
+      padding: var(--top) 24px;
       font-family: "EB Garamond", Garamond, serif;
       font-size: 0.9rem;
       line-height: 1.28;
@@ -32,21 +30,19 @@
       background:#fff;
     }
 
-    /* LEFT-ALIGNED WRAP (like the references) */
     .wrap{
-      max-width: var(--max);
-      margin: 0;                 /* <-- left aligned (not centered) */
-      padding-left: var(--padL); /* <-- left inset */
+      width: 100%;
+      margin: 0;
+      padding-left: var(--padL);
       display: grid;
       grid-template-columns: var(--navW) 1fr;
       gap: var(--gap);
       align-items: start;
     }
 
-    /* Sticky nav, but still simple */
     nav{
       position: sticky;
-      top: 40px;
+      top: 32px;
     }
 
     h1{
@@ -55,16 +51,11 @@
       margin: 0 0 0.55em 0;
     }
 
-    .bio{
-      margin: 0 0 1.2em 0;
-      color: var(--muted);
-    }
-
     .group-title{
       font-size: 0.82rem;
       font-weight: 500;
-      margin: 1.1em 0 0.35em 0;
-      color: var(--text);
+      margin: 1.0em 0 0.25em 0;
+      letter-spacing: 0.04em;
     }
 
     a{
@@ -78,35 +69,43 @@
       margin: 0.12em 0;
     }
 
-    /* Active link styling */
     .navlink.active{
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    /* CONTENT */
-    main{
+    .contact{
+      margin-top: 1.0em;
+      color: var(--muted);
+    }
+
+    .viewer{
       min-width: 0;
+      min-height: 60vh;
     }
 
-    section{
-      padding-bottom: 44px;
-      scroll-margin-top: 48px;
+    /* blank by default */
+    .placeholder{
+      color: transparent;
+      user-select: none;
     }
 
-    .section-title{
-      font-size: 0.95rem;
+    .viewer-header{
+      margin: 0 0 0.6em 0;
+    }
+
+    .viewer-title{
+      font-size: 0.98rem;
       font-weight: 500;
-      margin: 0 0 0.35em 0;
+      margin: 0;
     }
 
-    .section-meta{
-      margin: 0 0 0.9em 0;
+    .viewer-meta{
+      margin: 0.2em 0 0 0;
       color: var(--muted);
       font-style: italic;
     }
 
-    /* Horizontal image strip (Ramell-ish) */
     .strip{
       display:flex;
       gap: 18px;
@@ -125,52 +124,36 @@
       -webkit-user-drag: none;
     }
 
-    /* Simple embedded video block */
-    .embed{
-      max-width: 760px;
-    }
-    .embed iframe{
-      width: 100%;
-      aspect-ratio: 16/9;
-      border: 0;
-      display:block;
-    }
-
-    /* Contact line */
-    .contact{
-      color: var(--muted);
-      margin-top: 0.8em;
-    }
-
-    /* Mobile */
     @media (max-width: 860px){
       .wrap{
         grid-template-columns: 1fr;
         padding-left: 16px;
-        gap: 26px;
+        gap: 22px;
       }
       nav{ position: static; }
       .strip img{ height: 320px; }
+      .viewer{ min-height: auto; }
+      .placeholder{ display:none; }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <!-- LEFT NAV (clicking keeps you on the same page, shows work below) -->
     <nav>
       <h1>Henry Brant Lewis</h1>
-      <p class="bio">Director, studying at Brown University</p>
 
-      <div class="group-title">Photography</div>
-      <a class="navlink" href="#south-forty">South Forty</a>
+      <div class="group-title"><a class="navlink" href="about.html" id="aboutLink">ABOUT</a></div>
 
-      <div class="group-title">Films</div>
-      <a class="navlink" href="#dogs">Dogs</a><br>
-      <a class="navlink" href="#warpin">Warpin'</a><br>
-      <a class="navlink" href="#seeyou">See You</a>
+      <div class="group-title">PHOTOGRAPHY</div>
+      <a class="navlink" href="index.html#south-forty" data-project="south-forty">South Forty</a>
 
-      <div class="group-title">Contact</div>
+      <div class="group-title">FILMS</div>
+      <a class="navlink" href="index.html#dogs" data-project="dogs">Dogs</a><br>
+      <a class="navlink" href="index.html#warpin" data-project="warpin">Warpin'</a><br>
+      <a class="navlink" href="index.html#seeyou" data-project="seeyou">See You</a>
+
+      <div class="group-title">CONTACT</div>
       <p class="contact">
         <a href="mailto:henrybrantlewis@gmail.com">Email</a> ·
         <a href="#">GitHub</a> ·
@@ -178,115 +161,150 @@
       </p>
     </nav>
 
-    <!-- RIGHT CONTENT (always present, just scrolls to the chosen section) -->
-    <main>
-      <!-- SOUTH FORTY -->
-      <section id="south-forty">
-        <div class="section-title">South Forty</div>
-        <p class="section-meta">Photography</p>
-
-        <!-- Put images here: images/south-forty/sf01.jpg etc -->
-        <div class="strip">
-          <img src="images/south-forty/sf01.jpg" alt="">
-          <img src="images/south-forty/sf02.jpg" alt="">
-          <img src="images/south-forty/sf03.jpg" alt="">
-        </div>
-      </section>
-
-      <!-- DOGS -->
-      <section id="dogs">
-        <div class="section-title">Dogs</div>
-        <p class="section-meta">In progress</p>
-
-        <!-- Optional: stills strip or notes -->
-        <p class="bio">Work in progress.</p>
-      </section>
-
-      <!-- WARPIN -->
-      <section id="warpin">
-        <div class="section-title">Warpin'</div>
-        <p class="section-meta">15-minute narrative · Brown Motion Pictures</p>
-
-        <!-- If you have a Vimeo/YouTube embed, drop it here -->
-        <div class="embed">
-          <!-- Example YouTube embed (replace VIDEO_ID) -->
-          <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
-        </div>
-      </section>
-
-      <!-- SEE YOU -->
-      <section id="seeyou">
-        <div class="section-title">See You</div>
-        <p class="section-meta">5-minute narrative · 35mm</p>
-
-        <div class="embed">
-          <!-- Example Vimeo embed (replace numbers) -->
-          <!-- <iframe src="https://player.vimeo.com/video/123456789" allowfullscreen></iframe> -->
-        </div>
-      </section>
+    <main class="viewer" id="viewer">
+      <div class="placeholder">.</div>
     </main>
   </div>
 
   <script>
-    // Smooth scroll + active nav highlight (keeps the “still here, just viewing work” feel)
-    const links = Array.from(document.querySelectorAll('.navlink'));
-    const sections = links
-      .map(a => document.querySelector(a.getAttribute('href')))
-      .filter(Boolean);
+    const PROJECTS = {
+      "south-forty": {
+        title: "South Forty",
+        meta: "Photography",
+        type: "images",
+        items: [
+          "images/south-forty/sf01.jpg",
+          "images/south-forty/sf02.jpg",
+          "images/south-forty/sf03.jpg",
+        ]
+      },
+      "dogs": {
+        title: "Dogs",
+        meta: "In progress",
+        type: "text",
+        text: "Work in progress."
+      },
+      "warpin": {
+        title: "Warpin'",
+        meta: "15-minute narrative · Brown Motion Pictures",
+        type: "embed",
+        src: ""  // add your embed url later
+      },
+      "seeyou": {
+        title: "See You",
+        meta: "5-minute narrative · 35mm",
+        type: "embed",
+        src: ""  // add your embed url later
+      }
+    };
 
-    // Drag-to-scroll for the image strip(s)
-    document.querySelectorAll('.strip').forEach(strip => {
+    const viewer = document.getElementById("viewer");
+    const links = Array.from(document.querySelectorAll(".navlink[data-project]"));
+
+    function setActive(projectKey) {
+      links.forEach(a => a.classList.toggle("active", a.dataset.project === projectKey));
+      // ABOUT not active on index
+      const aboutLink = document.getElementById("aboutLink");
+      if (aboutLink) aboutLink.classList.remove("active");
+    }
+
+    function enableDragScroll(strip) {
       let isDown = false, startX = 0, scrollLeft = 0;
-      strip.addEventListener('mousedown', (e) => {
+
+      strip.addEventListener("mousedown", (e) => {
         isDown = true;
         startX = e.pageX - strip.offsetLeft;
         scrollLeft = strip.scrollLeft;
-        strip.style.cursor = 'grabbing';
+        strip.style.cursor = "grabbing";
       });
-      strip.addEventListener('mouseleave', () => { isDown = false; strip.style.cursor = 'grab'; });
-      strip.addEventListener('mouseup', () => { isDown = false; strip.style.cursor = 'grab'; });
-      strip.addEventListener('mousemove', (e) => {
+      strip.addEventListener("mouseleave", () => { isDown = false; strip.style.cursor = "grab"; });
+      strip.addEventListener("mouseup", () => { isDown = false; strip.style.cursor = "grab"; });
+      strip.addEventListener("mousemove", (e) => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - strip.offsetLeft;
         const walk = (x - startX) * 2;
         strip.scrollLeft = scrollLeft - walk;
       });
-    });
-
-    function setActive() {
-      const y = window.scrollY + 80;
-      let current = sections[0]?.id || '';
-      sections.forEach(sec => {
-        if (sec.offsetTop <= y) current = sec.id;
-      });
-      links.forEach(a => {
-        const id = a.getAttribute('href').slice(1);
-        a.classList.toggle('active', id === current);
-      });
     }
 
-    // Smooth scroll on click
+    function renderProject(projectKey) {
+      const p = PROJECTS[projectKey];
+      if (!p) return;
+
+      viewer.innerHTML = "";
+
+      const header = document.createElement("div");
+      header.className = "viewer-header";
+
+      const h = document.createElement("p");
+      h.className = "viewer-title";
+      h.textContent = p.title;
+
+      const m = document.createElement("p");
+      m.className = "viewer-meta";
+      m.textContent = p.meta;
+
+      header.appendChild(h);
+      header.appendChild(m);
+      viewer.appendChild(header);
+
+      if (p.type === "images") {
+        const strip = document.createElement("div");
+        strip.className = "strip";
+        p.items.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "";
+          strip.appendChild(img);
+        });
+        viewer.appendChild(strip);
+        enableDragScroll(strip);
+      }
+
+      if (p.type === "embed") {
+        if (!p.src) {
+          const note = document.createElement("p");
+          note.style.color = "rgba(0,0,0,0.45)";
+          note.textContent = "Embed link not set yet.";
+          viewer.appendChild(note);
+        } else {
+          const iframe = document.createElement("iframe");
+          iframe.src = p.src;
+          iframe.allowFullscreen = true;
+          iframe.style.width = "100%";
+          iframe.style.maxWidth = "820px";
+          iframe.style.aspectRatio = "16 / 9";
+          iframe.style.border = "0";
+          iframe.style.display = "block";
+          viewer.appendChild(iframe);
+        }
+      }
+
+      if (p.type === "text") {
+        const t = document.createElement("p");
+        t.style.color = "rgba(0,0,0,0.55)";
+        t.textContent = p.text || "";
+        viewer.appendChild(t);
+      }
+
+      setActive(projectKey);
+    }
+
+    // Intercept clicks to prevent full reload (still updates hash + resets viewer)
     links.forEach(a => {
-      a.addEventListener('click', (e) => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (!target) return;
+      a.addEventListener("click", (e) => {
         e.preventDefault();
-        history.pushState(null, '', a.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(setActive, 150);
+        const key = a.dataset.project;
+        history.pushState(null, "", "index.html#" + key);
+        renderProject(key);
       });
     });
 
-    window.addEventListener('scroll', setActive, { passive: true });
-    window.addEventListener('load', () => {
-      // If arriving with a hash, scroll to it without leaving page feel
-      const hash = location.hash;
-      if (hash) {
-        const t = document.querySelector(hash);
-        if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' });
-      }
-      setActive();
+    // On load, render only the hashed project; otherwise keep blank
+    window.addEventListener("load", () => {
+      const hash = (location.hash || "").replace("#", "");
+      if (PROJECTS[hash]) renderProject(hash);
     });
   </script>
 </body>
