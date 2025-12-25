@@ -5,18 +5,18 @@
   <title>About — Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Same font as index -->
+  <!-- Typeface Basic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Basic&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --text:#111;
       --muted:rgba(0,0,0,0.55);
 
-      --top: 28px;
-      --leftPad: 16px;
+      --top: 26px;
+      --leftPad: 14px;
       --navW: 220px;
       --gap: 26px;
     }
@@ -26,10 +26,9 @@
     body{
       margin:0;
       padding: var(--top) 12px;
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 0.84rem;
+      font-family: "Basic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.86rem;
       line-height: 1.18;
-      letter-spacing: -0.01em;
       color: var(--text);
       background:#fff;
     }
@@ -51,15 +50,14 @@
     }
 
     h1{
-      font-size: 0.92rem;
-      font-weight: 500;
-      margin: 0 0 0.7em 0;
-      letter-spacing: -0.02em;
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin: 0 0 0.85em 0;
     }
 
     .group-title{
-      font-size: 0.76rem;
-      font-weight: 500;
+      font-size: 0.78rem;
+      font-weight: 400;
       margin: 0.95em 0 0.25em 0;
       letter-spacing: 0.02em;
     }
@@ -94,8 +92,7 @@
       min-height: 60vh;
     }
 
-    /* Keep About content quiet and tight */
-    .about-body p{
+    .about p{
       margin: 0 0 0.9em 0;
       color: var(--muted);
     }
@@ -107,10 +104,7 @@
         padding-left: 10px;
         gap: 16px;
       }
-      nav{
-        position: static;
-        width: auto;
-      }
+      nav{ position: static; width: auto; }
       main{ min-height: auto; }
     }
   </style>
@@ -124,12 +118,11 @@
       <div class="group-title"><a class="navlink active" href="about.html">ABOUT</a></div>
 
       <div class="group-title">PHOTOGRAPHY</div>
-      <a class="navlink" href="index.html#south-forty">South Forty</a>
+      <a class="navlink" href="southforty.html">South Forty</a>
 
       <div class="group-title">FILMS</div>
-      <a class="navlink" href="index.html#dogs">Dogs</a><br>
-      <a class="navlink" href="index.html#warpin">Warpin'</a><br>
-      <a class="navlink" href="index.html#seeyou">See You</a>
+      <a class="navlink" href="warpin.html">Warpin'</a><br>
+      <a class="navlink" href="seeyou.html">See You</a>
 
       <div class="group-title">CONTACT</div>
       <p class="contact">
@@ -140,13 +133,9 @@
     </nav>
 
     <main>
-      <div class="about-body">
-        <p>
-          Replace this with your bio. Keep it tight and factual.
-        </p>
-        <p>
-          You can include location, representation, recent work, festivals, or a short statement.
-        </p>
+      <div class="about">
+        <p>Replace this with your bio.</p>
+        <p>Add location, representation, festivals, or a short statement.</p>
       </div>
     </main>
   </div>
