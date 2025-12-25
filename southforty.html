@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>South Forty — Henry Brant Lewis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      color: #111;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    /* --- SLIDER --- */
+    .slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      cursor: grab;
+
+      scrollbar-width: none; /* Firefox */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .slider::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    .slider img {
+      height: 420px;
+      flex-shrink: 0;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p><a href="index.html">← Back</a></p>
+
+  <h1>South Forty</h1>
+
+  <div class="slider">
+    <img src="images/south-forty/sf01.jpg" alt="">
+    <img src="images/south-forty/sf02.jpg" alt="">
+    <img src="images/south-forty/sf03.jpg" alt="">
+    <img src="images/south-forty/sf04.jpg" alt="">
+    <img src="images/south-forty/sf05.jpg" alt="">
+    <img src="images/south-forty/sf06.jpg" alt="">
+  </div>
+
+  <script>
+    const slider = document.querySelector('.slider');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+
+</body>
+</html>
 
