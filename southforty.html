@@ -5,98 +5,182 @@
   <title>South Forty — Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Typeface Basic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Basic&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      color: #111;
+    :root{
+      --text:#111;
+      --muted:rgba(0,0,0,0.55);
+
+      --top: 26px;
+      --leftPad: 14px;
+      --navW: 220px;
+      --gap: 26px;
     }
 
-    a {
-      color: #0066cc;
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      padding: var(--top) 12px;
+      font-family: "Basic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.18;
+      color: var(--text);
+      background:#fff;
+    }
+
+    .wrap{
+      width: 100%;
+      margin: 0;
+      padding-left: var(--leftPad);
+      display: grid;
+      grid-template-columns: var(--navW) 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    nav{
+      position: sticky;
+      top: 14px;
+      width: var(--navW);
+    }
+
+    h1{
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin: 0 0 0.85em 0;
+    }
+
+    .group-title{
+      font-size: 0.78rem;
+      font-weight: 400;
+      margin: 0.95em 0 0.25em 0;
+      letter-spacing: 0.02em;
+    }
+
+    a{
+      color: var(--text);
       text-decoration: none;
     }
-
-    a:hover {
+    a:hover{
       text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+    .navlink{
+      display: inline-block;
+      margin: 0.08em 0;
     }
 
-    /* --- SLIDER --- */
-    .slider {
-      display: flex;
-      gap: 20px;
+    .navlink.active{
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .contact{
+      margin-top: 0.95em;
+      color: var(--muted);
+    }
+
+    main{
+      min-width: 0;
+      min-height: 60vh;
+    }
+
+    /* photos only */
+    .strip{
+      display:flex;
+      gap: 12px;
       overflow-x: auto;
-      padding-bottom: 20px;
-      cursor: grab;
-
-      scrollbar-width: none; /* Firefox */
+      padding-bottom: 8px;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
     }
+    .strip::-webkit-scrollbar{ display:none; }
 
-    .slider::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
-    }
-
-    .slider img {
-      height: 420px;
-      flex-shrink: 0;
+    .strip img{
+      height: 440px;
+      flex: 0 0 auto;
       user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    @media (max-width: 860px){
+      body{ padding-top: 18px; }
+      .wrap{
+        grid-template-columns: 1fr;
+        padding-left: 10px;
+        gap: 16px;
+      }
+      nav{ position: static; width: auto; }
+      .strip img{ height: 320px; }
+      main{ min-height: auto; }
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <nav>
+      <h1>Henry Brant Lewis</h1>
 
-  <p><a href="index.html">← Back</a></p>
+      <div class="group-title"><a class="navlink" href="about.html">ABOUT</a></div>
 
-  <h1>South Forty</h1>
+      <div class="group-title">PHOTOGRAPHY</div>
+      <a class="navlink active" href="southforty.html">South Forty</a>
 
-  <div class="slider">
-    <img src="images/south-forty/sf01.jpg" alt="">
-    <img src="images/south-forty/sf02.jpg" alt="">
-    <img src="images/south-forty/sf03.jpg" alt="">
-    <img src="images/south-forty/sf04.jpg" alt="">
-    <img src="images/south-forty/sf05.jpg" alt="">
-    <img src="images/south-forty/sf06.jpg" alt="">
-    <img src="images/south-forty/sf07.jpg" alt="">
-    <img src="images/south-forty/sf08.jpg" alt="">
+      <div class="group-title">FILMS</div>
+      <a class="navlink" href="warpin.html">Warpin'</a><br>
+      <a class="navlink" href="seeyou.html">See You</a>
+
+      <div class="group-title">CONTACT</div>
+      <p class="contact">
+        <a href="mailto:henrybrantlewis@gmail.com">Email</a> ·
+        <a href="#">GitHub</a> ·
+        <a href="#">LinkedIn</a>
+      </p>
+    </nav>
+
+    <main>
+      <div class="strip" id="strip">
+        <img src="images/south-forty/sf01.jpg" alt="">
+        <img src="images/south-forty/sf02.jpg" alt="">
+        <img src="images/south-forty/sf03.jpg" alt="">
+        <img src="images/south-forty/sf04.jpg" alt="">
+        <img src="images/south-forty/sf05.jpg" alt="">
+        <img src="images/south-forty/sf06.jpg" alt="">
+        <img src="images/south-forty/sf07.jpg" alt="">
+        <img src="images/south-forty/sf08.jpg" alt="">
+      </div>
+    </main>
   </div>
 
   <script>
-    const slider = document.querySelector('.slider');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // drag-to-scroll
+    const strip = document.getElementById("strip");
+    let isDown = false, startX = 0, scrollLeft = 0;
 
-    slider.addEventListener('mousedown', (e) => {
+    strip.addEventListener("mousedown", (e) => {
       isDown = true;
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+      strip.style.cursor = "grabbing";
     });
-
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-    });
-
-    slider.addEventListener('mousemove', (e) => {
+    strip.addEventListener("mouseleave", () => { isDown = false; strip.style.cursor = "grab"; });
+    strip.addEventListener("mouseup", () => { isDown = false; strip.style.cursor = "grab"; });
+    strip.addEventListener("mousemove", (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
+      const x = e.pageX - strip.offsetLeft;
       const walk = (x - startX) * 2;
-      slider.scrollLeft = scrollLeft - walk;
+      strip.scrollLeft = scrollLeft - walk;
     });
   </script>
-
 </body>
 </html>
 
