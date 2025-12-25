@@ -5,20 +5,20 @@
   <title>Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font similar to your image: typewriter/mono -->
+  <!-- Typeface Basic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Basic&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --text:#111;
       --muted:rgba(0,0,0,0.55);
 
-      --top: 28px;
-      --leftPad: 16px;     /* more left */
-      --navW: 220px;       /* fixed width so nothing shifts */
-      --gap: 26px;         /* tighter */
+      --top: 26px;
+      --leftPad: 14px;   /* push left */
+      --navW: 220px;     /* fixed on ALL pages -> no shifting */
+      --gap: 26px;       /* tight */
     }
 
     *{ box-sizing: border-box; }
@@ -26,10 +26,9 @@
     body{
       margin:0;
       padding: var(--top) 12px;
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 0.84rem;
+      font-family: "Basic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.86rem;
       line-height: 1.18;
-      letter-spacing: -0.01em;
       color: var(--text);
       background:#fff;
     }
@@ -44,7 +43,6 @@
       align-items: start;
     }
 
-    /* Keep nav consistent across pages to prevent "shift" */
     nav{
       position: sticky;
       top: 14px;
@@ -52,15 +50,14 @@
     }
 
     h1{
-      font-size: 0.92rem;
-      font-weight: 500;
-      margin: 0 0 0.7em 0;
-      letter-spacing: -0.02em;
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin: 0 0 0.85em 0;
     }
 
     .group-title{
-      font-size: 0.76rem;
-      font-weight: 500;
+      font-size: 0.78rem;
+      font-weight: 400;
       margin: 0.95em 0 0.25em 0;
       letter-spacing: 0.02em;
     }
@@ -89,41 +86,10 @@
       color: var(--muted);
     }
 
-    /* Viewer is blank until clicked */
-    .viewer{
+    /* right side stays blank on home */
+    main{
       min-width: 0;
       min-height: 60vh;
-    }
-    .placeholder{
-      color: transparent;
-      user-select: none;
-    }
-
-    /* Photos-only strip */
-    .strip{
-      display:flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      cursor: grab;
-    }
-    .strip::-webkit-scrollbar{ display:none; }
-
-    .strip img{
-      height: 440px;
-      flex: 0 0 auto;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    iframe{
-      width: 100%;
-      max-width: 860px;
-      aspect-ratio: 16 / 9;
-      border: 0;
-      display:block;
     }
 
     @media (max-width: 860px){
@@ -133,13 +99,8 @@
         padding-left: 10px;
         gap: 16px;
       }
-      nav{
-        position: static;
-        width: auto;
-      }
-      .strip img{ height: 320px; }
-      .viewer{ min-height: auto; }
-      .placeholder{ display:none; }
+      nav{ position: static; width: auto; }
+      main{ min-height: auto; }
     }
   </style>
 </head>
@@ -149,15 +110,14 @@
     <nav>
       <h1>Henry Brant Lewis</h1>
 
-      <div class="group-title"><a class="navlink" href="about.html" id="aboutLink">ABOUT</a></div>
+      <div class="group-title"><a class="navlink" href="about.html">ABOUT</a></div>
 
       <div class="group-title">PHOTOGRAPHY</div>
-      <a class="navlink" href="index.html#south-forty" data-project="south-forty">South Forty</a>
+      <a class="navlink" href="southforty.html">South Forty</a>
 
       <div class="group-title">FILMS</div>
-      <a class="navlink" href="index.html#dogs" data-project="dogs">Dogs</a><br>
-      <a class="navlink" href="index.html#warpin" data-project="warpin">Warpin'</a><br>
-      <a class="navlink" href="index.html#seeyou" data-project="seeyou">See You</a>
+      <a class="navlink" href="warpin.html">Warpin'</a><br>
+      <a class="navlink" href="seeyou.html">See You</a>
 
       <div class="group-title">CONTACT</div>
       <p class="contact">
@@ -167,129 +127,9 @@
       </p>
     </nav>
 
-    <main class="viewer" id="viewer">
-      <div class="placeholder">.</div>
-    </main>
+    <!-- Intentionally blank (like the references) -->
+    <main></main>
   </div>
-
-  <script>
-    // Only photos should appear: no title/meta rendering.
-    // Update these file paths to match your repo exactly.
-    const PROJECTS = {
-      "south-forty": {
-        type: "images",
-        items: [
-          "images/south-forty/sf01.jpg",
-          "images/south-forty/sf02.jpg",
-          "images/south-forty/sf03.jpg",
-        ]
-      },
-      "dogs": {
-        type: "text",
-        text: "In progress."
-      },
-      "warpin": {
-        type: "embed",
-        src: "" // set later
-      },
-      "seeyou": {
-        type: "embed",
-        src: "" // set later
-      }
-    };
-
-    const viewer = document.getElementById("viewer");
-    const links = Array.from(document.querySelectorAll(".navlink[data-project]"));
-
-    function setActive(projectKey){
-      links.forEach(a => a.classList.toggle("active", a.dataset.project === projectKey));
-      const about = document.getElementById("aboutLink");
-      if (about) about.classList.remove("active");
-    }
-
-    function enableDragScroll(strip){
-      let isDown = false, startX = 0, scrollLeft = 0;
-
-      strip.addEventListener("mousedown", (e) => {
-        isDown = true;
-        startX = e.pageX - strip.offsetLeft;
-        scrollLeft = strip.scrollLeft;
-        strip.style.cursor = "grabbing";
-      });
-      strip.addEventListener("mouseleave", () => { isDown = false; strip.style.cursor = "grab"; });
-      strip.addEventListener("mouseup", () => { isDown = false; strip.style.cursor = "grab"; });
-      strip.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - strip.offsetLeft;
-        const walk = (x - startX) * 2;
-        strip.scrollLeft = scrollLeft - walk;
-      });
-    }
-
-    function renderProject(projectKey){
-      const p = PROJECTS[projectKey];
-      if (!p) return;
-
-      // Reset (prevents stacking)
-      viewer.innerHTML = "";
-
-      if (p.type === "images"){
-        const strip = document.createElement("div");
-        strip.className = "strip";
-
-        p.items.forEach(src => {
-          const img = document.createElement("img");
-          img.src = src;
-          img.alt = "";
-          strip.appendChild(img);
-        });
-
-        viewer.appendChild(strip);
-        enableDragScroll(strip);
-      }
-
-      if (p.type === "embed"){
-        if (!p.src){
-          // If you prefer truly blank rather than a note, delete this block.
-          const note = document.createElement("p");
-          note.style.color = "rgba(0,0,0,0.45)";
-          note.textContent = "Embed link not set yet.";
-          viewer.appendChild(note);
-        } else {
-          const iframe = document.createElement("iframe");
-          iframe.src = p.src;
-          iframe.allowFullscreen = true;
-          viewer.appendChild(iframe);
-        }
-      }
-
-      if (p.type === "text"){
-        const para = document.createElement("p");
-        para.style.color = "rgba(0,0,0,0.55)";
-        para.textContent = p.text || "";
-        viewer.appendChild(para);
-      }
-
-      setActive(projectKey);
-    }
-
-    // Prevent default anchor jump (which can show the title at top / shift)
-    links.forEach(a => {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        const key = a.dataset.project;
-        history.pushState(null, "", "index.html#" + key);
-        renderProject(key);
-      });
-    });
-
-    // On load: render hashed project if present, otherwise blank
-    window.addEventListener("load", () => {
-      const hash = (location.hash || "").replace("#", "");
-      if (PROJECTS[hash]) renderProject(hash);
-    });
-  </script>
 </body>
 </html>
 
