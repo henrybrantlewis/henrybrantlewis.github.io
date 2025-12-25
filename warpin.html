@@ -2,75 +2,144 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PROJECT TITLE — Henry Brant Lewis</title>
+  <title>Warpin' — Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Typeface Basic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Basic&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #111;
+    :root{
+      --text:#111;
+      --muted:rgba(0,0,0,0.55);
+
+      --top: 26px;
+      --leftPad: 14px;
+      --navW: 220px;
+      --gap: 26px;
     }
 
-    a {
-      color: #0066cc;
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      padding: var(--top) 12px;
+      font-family: "Basic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.18;
+      color: var(--text);
+      background:#fff;
+    }
+
+    .wrap{
+      width: 100%;
+      margin: 0;
+      padding-left: var(--leftPad);
+      display: grid;
+      grid-template-columns: var(--navW) 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    nav{
+      position: sticky;
+      top: 14px;
+      width: var(--navW);
+    }
+
+    h1{
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin: 0 0 0.85em 0;
+    }
+
+    .group-title{
+      font-size: 0.78rem;
+      font-weight: 400;
+      margin: 0.95em 0 0.25em 0;
+      letter-spacing: 0.02em;
+    }
+
+    a{
+      color: var(--text);
       text-decoration: none;
     }
-    a:hover {
+    a:hover{
       text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.3em;
+    .navlink{
+      display: inline-block;
+      margin: 0.08em 0;
     }
 
-    .meta {
-      color: #555;
-      margin-bottom: 2em;
+    .navlink.active{
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+    .contact{
+      margin-top: 0.95em;
+      color: var(--muted);
     }
 
-    .gallery img {
+    main{
+      min-width: 0;
+      min-height: 60vh;
+    }
+
+    iframe{
       width: 100%;
-      height: auto;
-      display: block;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display:block;
     }
 
-    .caption {
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 4px;
+    @media (max-width: 860px){
+      body{ padding-top: 18px; }
+      .wrap{
+        grid-template-columns: 1fr;
+        padding-left: 10px;
+        gap: 16px;
+      }
+      nav{ position: static; width: auto; }
+      main{ min-height: auto; }
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <nav>
+      <h1>Henry Brant Lewis</h1>
 
-  <p><a href="index.html">← Back</a></p>
+      <div class="group-title"><a class="navlink" href="about.html">ABOUT</a></div>
 
-  <h1>Warpin'</h1>
-  <p class="meta">
-    2025 · Short Narrative Film · 15 minutes<br />
-    Facing a difficult conversation, two dopey, incommunicative buddies discover a time machine during a late-night challenge at their college library.
-  </p>
+      <div class="group-title">PHOTOGRAPHY</div>
+      <a class="navlink" href="southforty.html">South Forty</a>
 
-  <iframe
-  src="https://brownmotionpictures.org/films#/warpin/"
-  width="100%"
-  height="450"
-  frameborder="0"
-  allow="autoplay; fullscreen"
-  allowfullscreen>
-</iframe>
+      <div class="group-title">FILMS</div>
+      <a class="navlink active" href="warpin.html">Warpin'</a><br>
+      <a class="navlink" href="seeyou.html">See You</a>
 
+      <div class="group-title">CONTACT</div>
+      <p class="contact">
+        <a href="mailto:henrybrantlewis@gmail.com">Email</a> ·
+        <a href="#">GitHub</a> ·
+        <a href="#">LinkedIn</a>
+      </p>
+    </nav>
 
+    <main>
+      <!-- Replace src with your embed -->
+      <!-- Example YouTube: https://www.youtube.com/embed/VIDEO_ID -->
+      <!-- Example Vimeo: https://player.vimeo.com/video/123456789 -->
+      <iframe src="" allowfullscreen></iframe>
+    </main>
+  </div>
 </body>
 </html>
