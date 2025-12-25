@@ -8,30 +8,30 @@
   <!-- Same font as index -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --text:#111;
       --muted:rgba(0,0,0,0.55);
 
-      --top: 32px;
-      --leftPad: 20px;
-      --navW: 210px;
-      --gap: 28px;
+      --top: 28px;
+      --leftPad: 16px;
+      --navW: 220px;
+      --gap: 26px;
     }
 
     *{ box-sizing: border-box; }
 
     body{
       margin:0;
-      padding: var(--top) 16px;
-      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 0.86rem;
+      padding: var(--top) 12px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.84rem;
       line-height: 1.18;
+      letter-spacing: -0.01em;
       color: var(--text);
       background:#fff;
-      letter-spacing: -0.01em;
     }
 
     .wrap{
@@ -46,21 +46,22 @@
 
     nav{
       position: sticky;
-      top: 16px;
+      top: 14px;
+      width: var(--navW);
     }
 
     h1{
-      font-size: 0.96rem;
+      font-size: 0.92rem;
       font-weight: 500;
-      margin: 0 0 0.55em 0;
+      margin: 0 0 0.7em 0;
       letter-spacing: -0.02em;
     }
 
     .group-title{
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 500;
       margin: 0.95em 0 0.25em 0;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
     }
 
     a{
@@ -83,36 +84,34 @@
     }
 
     .contact{
-      margin-top: 0.9em;
+      margin-top: 0.95em;
       color: var(--muted);
     }
 
     main{
       min-width: 0;
-      max-width: 680px;
-      padding-top: 0.05em;
+      max-width: 720px;
+      min-height: 60vh;
     }
 
-    .about-title{
-      font-size: 0.94rem;
-      font-weight: 500;
-      margin: 0 0 0.6em 0;
-      letter-spacing: -0.02em;
-    }
-
+    /* Keep About content quiet and tight */
     .about-body p{
-      margin: 0 0 0.85em 0;
+      margin: 0 0 0.9em 0;
       color: var(--muted);
     }
 
     @media (max-width: 860px){
-      body{ padding-top: 22px; }
+      body{ padding-top: 18px; }
       .wrap{
         grid-template-columns: 1fr;
-        padding-left: 12px;
-        gap: 18px;
+        padding-left: 10px;
+        gap: 16px;
       }
-      nav{ position: static; }
+      nav{
+        position: static;
+        width: auto;
+      }
+      main{ min-height: auto; }
     }
   </style>
 </head>
@@ -141,19 +140,18 @@
     </nav>
 
     <main>
-      <div class="about-title">About</div>
-
       <div class="about-body">
         <p>
-          Replace this with your bio. Keep it tight: one or two short paragraphs.
+          Replace this with your bio. Keep it tight and factual.
         </p>
         <p>
-          You can add representation, location, contact, or a short statement here.
+          You can include location, representation, recent work, festivals, or a short statement.
         </p>
       </div>
     </main>
   </div>
 </body>
 </html>
+
 
 
