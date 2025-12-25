@@ -5,20 +5,20 @@
   <title>See You — Henry Brant Lewis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Typeface Basic -->
+  <!-- Roboto Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Basic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --text:#111;
       --muted:rgba(0,0,0,0.55);
 
-      --top: 26px;
-      --leftPad: 14px;
+      --top: 24px;
+      --leftPad: 12px;
       --navW: 220px;
-      --gap: 26px;
+      --gap: 24px;
     }
 
     *{ box-sizing: border-box; }
@@ -26,11 +26,16 @@
     body{
       margin:0;
       padding: var(--top) 12px;
-      font-family: "Basic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Roboto Mono", ui-monospace, SFMono-Regular,
+                   Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 0.86rem;
-      line-height: 1.18;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      word-spacing: -0.18em;
       color: var(--text);
       background:#fff;
+      font-kerning: normal;
+      text-rendering: geometricPrecision;
     }
 
     .wrap{
@@ -45,7 +50,7 @@
 
     nav{
       position: sticky;
-      top: 14px;
+      top: 12px;
       width: var(--navW);
     }
 
@@ -58,8 +63,7 @@
     .group-title{
       font-size: 0.78rem;
       font-weight: 400;
-      margin: 0.95em 0 0.25em 0;
-      letter-spacing: 0.02em;
+      margin: 0.85em 0 0.2em 0;
     }
 
     a{
@@ -73,7 +77,7 @@
 
     .navlink{
       display: inline-block;
-      margin: 0.08em 0;
+      margin: 0.06em 0;
     }
 
     .navlink.active{
@@ -82,7 +86,7 @@
     }
 
     .contact{
-      margin-top: 0.95em;
+      margin-top: 0.85em;
       color: var(--muted);
     }
 
@@ -101,13 +105,21 @@
 
     @media (max-width: 860px){
       body{ padding-top: 18px; }
+
       .wrap{
         grid-template-columns: 1fr;
         padding-left: 10px;
         gap: 16px;
       }
-      nav{ position: static; width: auto; }
-      main{ min-height: auto; }
+
+      nav{
+        position: static;
+        width: auto;
+      }
+
+      main{
+        min-height: auto;
+      }
     }
   </style>
 </head>
@@ -117,7 +129,9 @@
     <nav>
       <h1>Henry Brant Lewis</h1>
 
-      <div class="group-title"><a class="navlink" href="about.html">ABOUT</a></div>
+      <div class="group-title">
+        <a class="navlink" href="about.html">ABOUT</a>
+      </div>
 
       <div class="group-title">PHOTOGRAPHY</div>
       <a class="navlink" href="southforty.html">South Forty</a>
@@ -135,9 +149,9 @@
     </nav>
 
     <main>
+      <!-- Replace src with your embed -->
       <iframe src="" allowfullscreen></iframe>
     </main>
   </div>
 </body>
 </html>
-
